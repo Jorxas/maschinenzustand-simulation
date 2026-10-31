@@ -1,0 +1,43 @@
+[
+  {
+    "id": "normalbetrieb",
+    "eingaben": [
+      "start",
+      "zeitschritt",
+      "stopp"
+    ],
+    "erwartet": [
+      "betrieb",
+      "betrieb",
+      "bereit"
+    ]
+  },
+  {
+    "id": "not-halt",
+    "eingaben": [
+      "start",
+      "not-halt",
+      "start",
+      "ruecksetzen"
+    ],
+    "erwartet": [
+      "betrieb",
+      "not-halt",
+      "not-halt",
+      "bereit"
+    ]
+  },
+  {
+    "id": "sensorfehler",
+    "eingaben": [
+      "start",
+      "sensorfehler",
+      "ruecksetzen"
+    ],
+    "erwartet": [
+      "betrieb",
+      "fehler",
+      "bereit"
+    ]
+  }
+]

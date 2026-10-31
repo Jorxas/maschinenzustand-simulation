@@ -1,0 +1,17 @@
+{
+  "id": "P10",
+  "status": "initialisiert",
+  "businessImplemented": false,
+  "fixture": "beispieldaten/szenarien.json",
+  "format": "json",
+  "expectedRecords": 3,
+  "starter": "src/simulation.py",
+  "command": "python src/simulation.py",
+  "implementationTickets": [
+    "P10-T01",
+    "P10-T02",
+    "P10-T03",
+    "P10-T04"
+  ],
+  "language": "de"
+}

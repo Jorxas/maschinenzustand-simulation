@@ -1,0 +1,11 @@
+{
+  "anfangszustand": "bereit",
+  "zustaende": [
+    "bereit",
+    "betrieb",
+    "not-halt",
+    "fehler"
+  ],
+  "zeitschrittSekunden": 1,
+  "echteMaschineVerbunden": false
+}
