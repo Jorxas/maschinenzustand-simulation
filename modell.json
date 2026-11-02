@@ -6,6 +6,14 @@
     "not-halt",
     "fehler"
   ],
+  "eingaben": [
+    "start",
+    "zeitschritt",
+    "stopp",
+    "not-halt",
+    "sensorfehler",
+    "ruecksetzen"
+  ],
   "zeitschrittSekunden": 1,
   "echteMaschineVerbunden": false
 }
