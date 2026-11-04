@@ -1,12 +1,12 @@
 {
   "id": "P10",
-  "status": "initialisiert",
+  "status": "P10-T02 umgesetzt; Gesamtabnahme offen",
   "businessImplemented": false,
   "fixture": "beispieldaten/szenarien.json",
   "format": "json",
   "expectedRecords": 3,
   "starter": "src/simulation.py",
-  "command": "python src/simulation.py",
+  "command": "uv run --offline --python 3.12 python -X utf8 src/simulation.py bereit start 0",
   "implementationTickets": [
     "P10-T01",
     "P10-T02",
