@@ -1,6 +1,6 @@
 {
   "id": "P10",
-  "status": "P10-T02 umgesetzt; Gesamtabnahme offen",
+  "status": "P10-T03 geprüft: drei Szenarien ohne Abweichung; Gesamtabnahme offen",
   "businessImplemented": false,
   "fixture": "beispieldaten/szenarien.json",
   "format": "json",

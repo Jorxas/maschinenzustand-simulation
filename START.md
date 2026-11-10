@@ -1,5 +1,23 @@
 # Technischer Einstieg — P10
 
+## Stand und Ausführung von P10-T03
+
+Im Projektordner:
+
+~~~powershell
+uv run --offline --python 3.12 python -X utf8 nachweise/pruefe_szenarien.py
+~~~
+
+Mit Python 3.12.14 tatsächlich ausgeführt, Exitcode 0: drei Szenarien, zehn Schritte, keine Abweichung. Der [Prüfer](nachweise/pruefe_szenarien.py) prüft zuerst die Struktur der unveränderten Beispieldaten und führt anschließend jedes Szenario unabhängig ab `bereit` und Sekunde 0 mit `zeitschritt_ausfuehren` aus. Er reicht jeweils die beobachteten Zustände und Zeiten weiter. Die erwarteten Zustände stammen aus `beispieldaten/szenarien.json`; erwartete Bewegung und Ereignismeldungen sind separat im Prüfer festgelegt. Vollständige Soll- und Ist-Datensätze werden je Schritt verglichen, einschließlich Zeit, vorherigem Zustand und Eingabe. Abweichungen führen zu Exitcode 1. Die [tatsächliche Ausgabe](nachweise/P10-T03-pruefung.txt) zeigt beide Seiten.
+
+| Szenario | Erwartete und beobachtete Zustandsfolge | Erwartete und beobachtete Folge |
+|---|---|---|
+| `normalbetrieb` | `betrieb → betrieb → bereit` | Start bewegt, Zeitschritt erhält Bewegung, Stopp beendet sie. |
+| `not-halt` | `betrieb → not-halt → not-halt → bereit` | Not-Halt stoppt, erneuter Start bleibt gesperrt, bewusstes Rücksetzen startet nicht. |
+| `sensorfehler` | `betrieb → fehler → bereit` | Sensorfehler stoppt, Rücksetzen führt ohne Wiederanlauf in Bereitschaft. |
+
+Damit ist der freigegebene Endpunkt von P10-T03 erreicht. Keine zusätzliche Determinismusprüfung oder vollständige Übergangsmatrix; P10-T04 und die Gesamtabnahme bleiben offen. LASTENHEFT.md wird hier nicht abgehakt. Rücksetzen setzt weiterhin eine behobene Ursache voraus. Nur eine lokale Python-Modellprüfung ohne Steuerung echter Maschinen; kein Nachweis industrieller Sicherheit oder praktischer Nutzung von MATLAB/Simulink, ISG oder SCADA/BMS.
+
 ## Stand und Ausführung von P10-T02
 
 `src/simulation.py` führt genau einen diskreten Schritt aus. Im Projektordner:
@@ -18,7 +36,7 @@ Kleine lokale Abnahme:
 uv run --offline --python 3.12 python -X utf8 nachweise/pruefe_zeitschritt.py
 ~~~
 
-Der Prüfer kontrolliert einen einzelnen Schritt von Sekunde 7 auf 8 samt vollständigem Ereignisdatensatz, führt ausschließlich das vorhandene Not-Halt-Beispiel aus und weist eine unbekannte Eingabe ab. Beobachtet: `betrieb → not-halt → not-halt → bereit`, Bewegung nur nach dem ersten Start. Ausgabe: [P10-T02-pruefung.txt](nachweise/P10-T02-pruefung.txt). Es gibt hier keinen automatischen Vergleich aller drei Szenarien und keine umfassende Übergangsprüfung; das bleibt P10-T03. Die Lastenheftkriterien bleiben unverändert offen. Keine Verbindung mit einer echten Maschine, keine industrielle Sicherheitsfunktion und kein Nachweis praktischer Nutzung von MATLAB/Simulink, ISG oder SCADA/BMS.
+Der T02-Prüfer kontrolliert einen einzelnen Schritt von Sekunde 7 auf 8 samt vollständigem Ereignisdatensatz, führt ausschließlich das vorhandene Not-Halt-Beispiel aus und weist eine unbekannte Eingabe ab. Beobachtet: `betrieb → not-halt → not-halt → bereit`, Bewegung nur nach dem ersten Start. Ausgabe: [P10-T02-pruefung.txt](nachweise/P10-T02-pruefung.txt). Der Vergleich aller drei Szenarien wurde separat in P10-T03 ergänzt (oben); eine umfassende Übergangsprüfung ist damit nicht belegt. Die Lastenheftkriterien bleiben unverändert offen. Keine Verbindung mit einer echten Maschine, keine industrielle Sicherheitsfunktion und kein Nachweis praktischer Nutzung von MATLAB/Simulink, ISG oder SCADA/BMS.
 
 ## Stand und Grenze von P10-T01
 
@@ -48,7 +66,7 @@ Vereinfachte Modellannahmen: Eingaben werden einzeln in Listenreihenfolge verarb
 
 ## Drei erwartete Szenarien
 
-Alle Szenarien beginnen unabhängig voneinander in `bereit`. Die Folgen stammen aus `beispieldaten/szenarien.json` und sind Sollwerte, keine beobachteten Ergebnisse.
+Alle Szenarien beginnen unabhängig voneinander in `bereit`. Die folgenden Sollwerte stammen aus `beispieldaten/szenarien.json`; der getrennte beobachtete T03-Vergleich steht oben und im Nachweis.
 
 | Szenario | Eingaben in Reihenfolge | Erwartete Zustände nach jeder Eingabe | Erwartetes Ereignis |
 |---|---|---|---|
