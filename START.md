@@ -1,5 +1,46 @@
 # Technischer Einstieg — P10
 
+## Grenzen und Werkzeugzugaenge — P10-T04
+
+Stand: 11. November 2026. Dieser Abschnitt dokumentiert ausschließlich die Grenzen und Voraussetzungen. Er belegt keine industrielle Inbetriebnahme und keine praktische Erfahrung mit Simulink, ISG oder SCADA/BMS.
+
+### Abstand zur industriellen Inbetriebnahme
+
+`src/simulation.py` verarbeitet eine Eingabe pro diskretem Schritt. `modell.json` setzt `zeitschrittSekunden` auf `1` und `echteMaschineVerbunden` auf `false`. `bewegung` ist lediglich der boolesche Vergleich des Folgezustands mit `betrieb`. Eine Modellsekunde ist keine gemessene Reaktionszeit. Bandposition, Geschwindigkeit, Masse, Last, Antrieb, Schlupf und Bremsweg werden nicht berechnet; Sensoreingaben stammen aus synthetischen Listen statt aus Messungen einer Anlage. Es gibt keine Kalibrierung oder Validierung gegen eine reale Förderanlage.
+
+Not-Halt bedeutet im Modell einen sofortigen Zustandswechsel ohne Bewegung. Das weist weder ein reales Anhalten noch eine sicherheitsgerichtete Steuerung nach. `ruecksetzen` nimmt die behobene Ursache bereits an; eine getrennte Prüfung von Freigaben, Schutzeinrichtungen oder Sensorsignalen fehlt. Der lokale Test bestätigt allein diese Modellregeln.
+
+Für eine industrielle Inbetriebnahme fehlen hier unter anderem reale Hardware- und E/A-Anbindung, überprüfte Signalzuordnung, Steuerungszyklus und Kommunikationsverhalten, Messungen von Reaktions- und Nachlaufzeiten sowie anlagenspezifische Risiko-, Sicherheits- und Abnahmeprüfungen durch zuständige Fachleute. Diese Aufzählung beschreibt den Abstand des Lernprojekts und ist keine vollständige Inbetriebnahmeanleitung. Keine echte Anlage wurde verbunden, gesteuert oder abgenommen.
+
+### Varianten und Zugang
+
+Die folgenden Voraussetzungen stammen aus den vorhandenen Erweiterungstickets. Im Projekt ist dafür weder ein freigegebener nutzbarer Zugang noch eine Ausführung belegt. Das ist keine Bestandsaufnahme aller installierten Programme oder möglicher persönlicher Lizenzen. Preise und konkrete Lizenzbedingungen wurden nicht geprüft.
+
+| Variante | Voraussetzung vor einer getrennt freizugebenden Ausführung | Aktueller Nachweis und Grenze |
+|---|---|---|
+| Python-Basis | Vorhandene Python-Laufzeit, lokale synthetische Daten; kein Zugang zu einem proprietären Zielwerkzeug erforderlich. | Lokal ausgeführt. Nachweis gilt ausschließlich für das diskrete Python-Modell. |
+| [P10-V01: MATLAB / Simulink](tickets/P10-V01.md) | Verfügbare Lernlizenz mit den für das Beispiel benötigten Produkten sowie nutzbare Installation. | Zugang nicht belegt; Ausführung blockiert und nicht begonnen. Kein Simulink-Modell ausgeführt. |
+| [P10-V02: ISG-virtuos / ISG-dirigent](tickets/P10-V02.md) | Lernlizenz oder zugängliches Demonstrationssystem für das konkret verwendete Produkt und ein ausführbares Beispiel. | Zugang nicht belegt; Ausführung blockiert und nicht begonnen. Keine praktische Nutzung eines der beiden Produkte nachgewiesen. |
+| [P10-V03: SCADA / BMS](tickets/P10-V03.md) | Konkretes Zielprodukt und geeignete lokale Lernumgebung; bei lizenzpflichtigem Produkt zusätzlich passender freigegebener Lizenzzugang. | Kein konkretes Zielprodukt oder nutzbarer Zugang belegt; Ausführung blockiert und nicht begonnen. SCADA/BMS bezeichnet hier eine Werkzeugkategorie, keine vorhandene Installation. |
+
+Ein späterer Produktnachweis müsste das tatsächlich verwendete Produkt samt Version, Modell beziehungsweise Konfiguration, Eingabe, Startbefehl oder Bedienschritten und beobachtetem Ergebnis enthalten. Ein Vergleich mit Python ersetzt diesen Lauf nicht. Es wurden keine Konten, Lizenzen oder kostenpflichtigen Dienste eingerichtet und keine Erweiterung umgesetzt. Die Erweiterungstickets bleiben geplant; ihre fehlenden Ausführungsvoraussetzungen sind hier als Blockaden festgehalten.
+
+Zutreffende Beschreibung dieses Stands: „Mit Assistentenunterstützung entwickeltes Python-Lernmodell eines Förderbands; drei synthetische Szenarien lokal verglichen, Grenzen dokumentiert; Gesamtabnahme offen.“ Daraus folgen keine praktische Erfahrung mit MATLAB/Simulink, ISG oder SCADA/BMS, industrielle Inbetriebnahme, Zertifizierung oder menschliche Eigenleistung.
+
+### Kleine lokale Abnahme wiederholen
+
+README.md, diesen Abschnitt, projekt.json und tickets/P10-T04.md gemeinsam lesen: Python-Nachweis, fehlende Produktzugänge und Abstand zur realen Anlage müssen ausdrücklich getrennt sein. LASTENHEFT.md bleibt mit A1–A4 offen; keine Gesamtabnahme und keine Erweiterungsfreigabe ableiten.
+
+Zur Kontrolle der beschriebenen Modellannahmen nur den vorhandenen kleinen T02-Prüfer ausführen und die unveränderten Beispieldaten kontrollieren:
+
+~~~powershell
+uv run --offline --python 3.12 python -X utf8 nachweise/pruefe_zeitschritt.py
+Get-FileHash -Algorithm SHA256 beispieldaten\szenarien.json
+git diff --check -- .
+~~~
+
+Die tatsächliche Ausgabe und die dokumentarische Sichtprüfung stehen in [P10-T04-abnahme.txt](nachweise/P10-T04-abnahme.txt). Der Prüfer liest `modell.json` und `beispieldaten/szenarien.json` und verwendet `src/simulation.py`; er testet einen Zeitschritt, das vorhandene Not-Halt-Szenario und die Abweisung einer unbekannten Eingabe. Er prüft keine Lizenzen oder industrielle Sicherheit. Die drei synthetischen Szenarien bleiben erhalten; SHA256: `DE690AA230ABB986C8DBB198DCB8E6B59F5FE7F94B5FBB44A3A72F4C03A2353C`. T04 ergänzt keinen neuen Softwaretest und führt keine erneute Gesamtabnahme aus.
+
 ## Stand und Ausführung von P10-T03
 
 Im Projektordner:
@@ -16,7 +57,7 @@ Mit Python 3.12.14 tatsächlich ausgeführt, Exitcode 0: drei Szenarien, zehn Sc
 | `not-halt` | `betrieb → not-halt → not-halt → bereit` | Not-Halt stoppt, erneuter Start bleibt gesperrt, bewusstes Rücksetzen startet nicht. |
 | `sensorfehler` | `betrieb → fehler → bereit` | Sensorfehler stoppt, Rücksetzen führt ohne Wiederanlauf in Bereitschaft. |
 
-Damit ist der freigegebene Endpunkt von P10-T03 erreicht. Keine zusätzliche Determinismusprüfung oder vollständige Übergangsmatrix; P10-T04 und die Gesamtabnahme bleiben offen. LASTENHEFT.md wird hier nicht abgehakt. Rücksetzen setzt weiterhin eine behobene Ursache voraus. Nur eine lokale Python-Modellprüfung ohne Steuerung echter Maschinen; kein Nachweis industrieller Sicherheit oder praktischer Nutzung von MATLAB/Simulink, ISG oder SCADA/BMS.
+Damit war der freigegebene Endpunkt von P10-T03 erreicht. Keine zusätzliche Determinismusprüfung oder vollständige Übergangsmatrix; zum damaligen Abschluss blieben P10-T04 und die Gesamtabnahme offen. Der spätere T04-Abschluss steht oben; die Gesamtabnahme bleibt offen. LASTENHEFT.md wird hier nicht abgehakt. Rücksetzen setzt weiterhin eine behobene Ursache voraus. Nur eine lokale Python-Modellprüfung ohne Steuerung echter Maschinen; kein Nachweis industrieller Sicherheit oder praktischer Nutzung von MATLAB/Simulink, ISG oder SCADA/BMS.
 
 ## Stand und Ausführung von P10-T02
 
