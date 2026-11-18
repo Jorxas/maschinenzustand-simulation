@@ -1,0 +1,17 @@
+{
+  "id": "P10",
+  "status": "P10-T04 geprüft: Grenzen und Werkzeugzugänge dokumentiert; Produktausführung der Varianten blockiert; Gesamtabnahme offen",
+  "businessImplemented": false,
+  "fixture": "beispieldaten/szenarien.json",
+  "format": "json",
+  "expectedRecords": 3,
+  "starter": "src/simulation.py",
+  "command": "uv run --offline --python 3.12 python -X utf8 src/simulation.py bereit start 0",
+  "implementationTickets": [
+    "P10-T01",
+    "P10-T02",
+    "P10-T03",
+    "P10-T04"
+  ],
+  "language": "de"
+}

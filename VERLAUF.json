@@ -1,0 +1,30 @@
+[
+  {
+    "phase": 1,
+    "ticket": "P10-T01",
+    "quellcommit": "460d0bde34756195698f7bc11129f1f3e3816727",
+    "lokal_committet_am": "2026-11-02T15:21:34+01:00",
+    "snapshot": "854d5f6ab6617caacead74c795c4ede73260860c86c72bef47eda469f8daa9f6"
+  },
+  {
+    "phase": 2,
+    "ticket": "P10-T02",
+    "quellcommit": "79ebe734a698898e779036b64e92570c11b5dfb8",
+    "lokal_committet_am": "2026-11-04T05:13:40+01:00",
+    "snapshot": "b46f99bb6713f03cedc46223887f17708890a00ff0853db1274db802d6d6c18d"
+  },
+  {
+    "phase": 3,
+    "ticket": "P10-T03",
+    "quellcommit": "32c69ebb247f9a7075de77a0e3136c7335c843eb",
+    "lokal_committet_am": "2026-11-10T05:53:39+01:00",
+    "snapshot": "bac06cde61474ac664274b5c775e3dde64407110695d76f7523f45d49dd46fb7"
+  },
+  {
+    "phase": 4,
+    "ticket": "P10-T04",
+    "quellcommit": "770b322690a4c7cb30872c14de7d27b0ad9e444c",
+    "lokal_committet_am": "2026-11-12T02:24:01+01:00",
+    "snapshot": "654e11a795e9f72fbeaaa41cd0df32f5201d594e91bda990ab5675724e61089a"
+  }
+]
