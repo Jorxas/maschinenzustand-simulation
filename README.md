@@ -1,28 +1,44 @@
-# Vereinfachter digitaler Zwilling eines Förderbands
+# Zustände eines Förderbands simulieren
 
-Stand: 11. November 2026 — **P10-T04 abgeschlossen: Modellgrenzen und Zugangsvoraussetzungen der Werkzeugvarianten dokumentiert und lokal geprüft. Gesamtabnahme offen.** Ursprüngliches Basisziel 7./8. November verfehlt; T04 gemäß Fortsetzungsauftrag am 11. November bearbeitet. Geschätzter Basisaufwand: 3 Stunden ohne Einrichtung und Erweiterungen.
+Normalbetrieb, Not-Halt und Sensorfehler eines Förderbands sollen vor Versuchen an echter Hardware nachvollziehbar geprüft werden.
 
-Das Verhalten eines Förderbands soll vor einem Versuch an echter Hardware überprüfbar sein.
+![Projektaufbau](dokumentation/ueberblick.svg)
 
-Ergebnis: Diskrete Zustandssimulation mit Normalbetrieb, Not-Halt und Sensorfehler sowie reproduzierbaren Ergebnissen.
+**Veröffentlichungsstand: Phase 4/4.** Dieses eigenständige Repository übernimmt zunächst den bereits lokal committeten Stand. Weitere fachliche Phasen werden im Abstand von mindestens vier Stunden veröffentlicht. Die technische Entwicklung und die öffentliche Veröffentlichung haben unterschiedliche echte Zeitpunkte.
 
-Vorgesehene Technologien: Python, Tests/QA, Simulation, MATLAB/Simulink, ISG-virtuos/dirigent, SCADA/BMS. Eine Nennung ist kein Nachweis einer Umsetzung.
+## Was hier zu sehen ist
 
-## Einstieg
+| Schritt | Inhalt | Hier veröffentlicht |
+|---|---|---|
+| 1 | Zustände und Szenarien | Ja |
+| 2 | Diskreter Simulationskern | Ja |
+| 3 | Reproduzierbare Szenarien | Ja |
+| 4 | Zeitschritt- und Fehlerfallprüfung | Ja |
 
-1. [Lastenheft](LASTENHEFT.md) lesen.
-2. [Abgeschlossenes Ticket P10-T04](tickets/P10-T04.md) öffnen.
-3. [Technischen Einstieg](START.md) prüfen und ein Ticket nach dem anderen bearbeiten.
-4. [Arbeitsjournal](ARBEITSJOURNAL.md) und echte Nachweise aktualisieren.
+## Fachlicher Nutzen
 
-Abhängigkeiten: keine weiteren Projekte.
+Zustandsmodellierung, reproduzierbare Simulation und technische Fehlerfallanalyse.
 
-Beschreibung und reproduzierbare Befehle stehen in [START.md](START.md). Der [T03-Soll-Ist-Vergleich](nachweise/P10-T03-pruefung.txt) enthält für jeden Schritt erwartete und beobachtete Ereignisdatensätze. Normalbetrieb, Not-Halt und Sensorfehler stimmen überein. Alle drei synthetischen Beispiele bleiben unverändert. LASTENHEFT.md mit seinen Kriterien A1–A4 bleibt für die gesonderte Gesamtabnahme unverändert; T03 liefert den Vergleichsnachweis für A3. Kein proprietäres Werkzeug wurde ausgeführt; daraus folgt keine praktische Produktkompetenz.
+## Lokal starten
 
-[Erweiterungen](VARIANTEN.md) haben einen eigenen Umsetzungsstand. [Private Unternehmenszuordnung](UNTERNEHMEN.lokal.md) bleibt außerhalb der Git-Verwaltung.
+Im geklonten Repository ausführen; die benötigte Laufzeit muss installiert sein. Python-Beispiele verwenden 3.12, Node-Beispiele 24 und C# die im Projekt angegebene .NET-Version. Befehle mit uv laden die dort genau bezeichneten Pakete bei Bedarf.
 
-Die [Grenzen und Werkzeugzugänge](START.md#grenzen-und-werkzeugzugaenge--p10-t04) trennen das Python-Lernmodell von industrieller Inbetriebnahme. Für MATLAB/Simulink, ISG-virtuos/ISG-dirigent und eine konkrete SCADA-/BMS-Lernumgebung ist im Projekt kein nutzbarer Zugang belegt; ihre Ausführung bleibt blockiert. Keine dieser Varianten wurde begonnen oder durch eine Ersatzsimulation als beherrscht ausgewiesen. [Lokale T04-Abnahme](nachweise/P10-T04-abnahme.txt). LASTENHEFT.md A1–A4 und `businessImplemented: false` bleiben unverändert; T04 liefert nur den dokumentierten Abgrenzungsnachweis zu A4.
+```powershell
+python -X utf8 nachweise/pruefe_szenarien.py
+```
 
-## Projektsprache
+Ausführliche technische Befehle: [START.md](START.md). [Öffentlicher Prüfstand](ABNAHME.json) und [Quellphasen](VERLAUF.json) dokumentieren Herkunft und echte Ausführungsdaten. Eine neue Repositorykopie ist kein neuer nativer Desktoplauf.
 
-Dokumentation, selbst gewählte Bezeichner, Kommentare, Meldungen und Beispieldaten werden auf Deutsch geschrieben. Festgelegte API-Schlüssel, Sprachsyntax und Produktnamen bleiben unverändert.
+## Ergebnis des lokal geprüften Schlussstands
+
+Normalbetrieb, Not-Halt und Sensorfehler mit festem Zeitschritt tatsächlich ausgeführt.
+
+## Grenzen
+
+Keine echte Maschine und kein Simulink-, ISG- oder SCADA-Produktlauf.
+
+Eigenes kleines Lernprojekt mit synthetischen Daten, mit KI-Unterstützung entwickelt und geprüft. Keine Aussage über Berufserfahrung, menschliche Arbeitsstunden oder praktische Verwendung weiterer nur geplanter Produkte.
+
+## Entwicklungshistorie
+
+[Entwicklungshistorie](HISTORIE.md): die vorhandenen lokalen Änderungen, ihre ursprünglichen Daten und die spätere GitHub-Übernahme.
