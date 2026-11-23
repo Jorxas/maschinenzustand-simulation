@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta name="color-scheme" content="light">
+<title>Förderband Zustandsmodell Demo</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f7a4d'/%3E%3Ccircle cx='9' cy='20' r='4' fill='white'/%3E%3Ccircle cx='23' cy='20' r='4' fill='white'/%3E%3Cpath d='M9 16h14' stroke='white' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+<a class="sprung" href="#inhalt" id="sprung"></a>
+<header class="kopf">
+  <div class="breit kopfzeile">
+    <p class="marke" id="marke"></p>
+    <div class="sprache" role="group" id="sprachwahl">
+      <button type="button" data-sprache="de" aria-pressed="true">DE</button>
+      <button type="button" data-sprache="fr" aria-pressed="false">FR</button>
+    </div>
+  </div>
+</header>
+
+<main id="inhalt" class="breit">
+  <noscript><p class="hinweis">Diese Seite braucht JavaScript. / Cette page nécessite JavaScript.</p></noscript>
+
+  <section class="held" aria-labelledby="h1">
+    <h1 id="h1"></h1>
+    <p class="lead" id="lead"></p>
+    <p class="herkunft" id="herkunft"></p>
+  </section>
+
+  <section class="zwei" aria-label="Aufgabe und Daten">
+    <article class="karte"><h2 id="h-aufgabe"></h2><p id="t-aufgabe"></p></article>
+    <article class="karte"><h2 id="h-daten"></h2><p id="t-daten"></p></article>
+  </section>
+
+  <section aria-labelledby="h-fall">
+    <h2 id="h-fall"></h2>
+    <p id="t-fall"></p>
+    <div class="schrittbereich">
+      <div class="status" id="status" role="status" aria-live="polite"></div>
+      <p class="beschr" id="l-tasten"></p>
+      <div class="tasten" id="tasten" role="group" aria-labelledby="l-tasten"></div>
+      <p class="beschr" id="l-strahl"></p>
+      <ol class="zeitstrahl" id="zeitstrahl" aria-labelledby="l-strahl"></ol>
+      <div class="tabelle"><table id="protokoll"></table></div>
+      <p class="quelle" id="t-protokoll"></p>
+      <div class="tasten oben">
+        <button type="button" class="knopf zweit" id="neu"></button>
+      </div>
+    </div>
+    <p class="warnung" id="t-warnung"></p>
+  </section>
+
+  <section aria-labelledby="h-szen">
+    <h2 id="h-szen"></h2>
+    <p id="t-szen"></p>
+    <div class="szenarien" id="szenarien"></div>
+  </section>
+
+  <section aria-labelledby="h-tabelle">
+    <h2 id="h-tabelle"></h2>
+    <p id="t-tabelle"></p>
+    <div class="karte"><div class="tabelle"><table id="uebergaenge"></table></div></div>
+  </section>
+
+  <section aria-labelledby="h-cli">
+    <h2 id="h-cli"></h2>
+    <p id="t-cli"></p>
+    <div class="karte" id="cli"></div>
+  </section>
+
+  <section class="zwei" aria-label="Ergebnis und Grenzen">
+    <article class="karte"><h2 id="h-ergebnis"></h2><ul id="l-ergebnis"></ul></article>
+    <article class="karte"><h2 id="h-grenzen"></h2><ul id="l-grenzen"></ul></article>
+  </section>
+
+  <section class="karte" aria-labelledby="h-entscheidungen">
+    <h2 id="h-entscheidungen"></h2>
+    <ul id="l-entscheidungen"></ul>
+  </section>
+</main>
+
+<footer class="fuss">
+  <div class="breit">
+    <p id="f-text"></p>
+    <p><a href="https://github.com/Jorxas/maschinenzustand-simulation" id="f-code" rel="noopener"></a> · <a href="https://jorxas.github.io/Portfolio/" id="f-portfolio" rel="noopener"></a></p>
+  </div>
+</footer>
+
+<script src="daten/lauf.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
